@@ -1,0 +1,31 @@
+services:
+  # Наш Django-бэкенд
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app  # Синхронизируем код, чтобы изменения применялись на лету
+    depends_on:
+      - db      # Ждем, пока запустится база данных
+    environment:
+      - DB_HOST=db  # Указываем имя контейнера с БД
+    command: > # Автоматически будут выполняться эти команды по миграции и запуску сервера
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py shell -c \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@example.com', '123')\" &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  # Наша база данных PostgreSQL
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: car_workshop
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root  # Пароль из твоего settings.py
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data # Сохраняем данные БД при перезапуске
+
+volumes:
+  pg_data:
