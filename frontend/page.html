@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="image/icon-site.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Можно, а зачем?</title>
+</head>
+<body>
+    <header class="header-block">
+        <img src="./image/logo.png" alt="Логотип сайта" class="header-block__logo">
+        <h1 class="header-block__title">Автомастерская Можно, а зачем?</h1>
+        <nav class="header-block__menu">
+            <ul class="header-block__menu-list">
+                <li class="header-block__menu-item"><a href="#question-block" class="menu-link">Главная</a></li>
+                <li class="header-block__menu-item"><a href="#answer-block" class="menu-link">О нас</a></li>
+                <li class="header-block__menu-item"><a href="#book-block" class="menu-link">Записаться</a></li>
+                <li class="header-block__menu-item"><a href="#masters-block" class="menu-link">Наши богатыри</a></li>
+                <li class="header-block__menu-item"><a href="#partner-block" class="menu-link">Партнёр</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-block">
+        <section class="question-block" id="question-block">
+            <h2 class="question-block__title">Можно ездить на ржавом ведре? <span class="hidden-text">Можно.</span></h2>
+            <img src="./image/car-gnil.png" alt="Ржавое ведро на колёсах" class="question-block__img">
+        </section>
+        <section class="answer-block" id="answer-block">
+            <h2 class="answer-block__title">Можно, а зачем?</h2>
+            <p class="answer-block__subtitle"><span class="hidden-text">Ведь мы можем сделать Porshe Cayenne Turbo GT лакшерный внедорожник с современным дизайном</span></p>
+            <img src="./image/porshe.png" alt="Porshe Cayenne Turbo GT" class="answer-block__img">
+        </section>
+        <section class="book-block" id="book-block">
+            <h3 class="book-block__title">Записывайся к нам на ТО</h3>
+            <p class="book-block__subtitle"><span class="hidden-text">Пока твоё ведро не развалилось</span></p>
+            <button class="book-block__button" onclick="window.bookDialog.showModal()">ЗАПИСАТЬСЯ</button>
+        </section>
+        <section class="masters-block" id="masters-block">
+            <h4 class="masters-block__title">Наши богатыри</h4>
+            <img src="./image/mem2.png" alt="На фоне упавшей с подъёмника машины стоят весёлые мастера" class="masters-block__img">
+        </section>
+        <section class="partner-block" id="partner-block">
+            <h5 class="partner-block__title">Наш партнёр <span class="hidden-text">и вдохновитель</span></h5>
+            <div class="partner-block__main">
+                <p class="partner-block__main-subtitle">Олег Груненков</p>
+                <img src="./image/mem.png" alt="Олег Груненков" class="partner-block__main-img">
+            </div>
+        </section>
+    </main>
+    <footer class="footer-block">
+        <h6 class="footer-block__title">Автомастерская Можно, а зачем?</h6>
+        <p class="footer-block__subtitle">Сайт разработали:</p>
+        <div class="footer-block__developers">
+            <p class="footer-block__developers-name1">Симонов Михаил</p>
+            <p class="footer-block__developers-and">И</p>
+            <p class="footer-block__developers-name2">Диканов Артём</p>
+        </div>
+    </footer>
+    <dialog class="book-dialog" id="bookDialog">
+        <form action="" class="book-dialog__form" method="post" name="bookForm">
+            <button class="book-dialog__form-close-button" type="button" onclick="window.bookDialog.close()">
+                <svg class="book-dialog__form-close-button-svg" fill="#CC1AB2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 14.545L1.455 16 8 9.455 14.545 16 16 14.545 9.455 8 16 1.455 14.545 0 8 6.545 1.455 0 0 1.455 6.545 8z" fill-rule="evenodd"/>
+                </svg>
+            </button>
+            <h6 class="book-dialog__form-title">Мы вам позвоним</h6>
+            <label for="name" class="book-dialog__form-label">Как вас зовут?</label>
+            <input type="text" class="book-dialog__form-input" id="name" name="name" required>
+            <label for="phone" class="book-dialog__form-label">Ваш номер?</label>
+            <input type="text" class="book-dialog__form-input" id="phone" name="phone" required>
+            <label for="comment" class="book-dialog__form-label">Оставьте комментарий к заявке:</label>
+            <textarea class="book-dialog__form-input-big" id="comment" name="comment" rows="7" cols="49"></textarea>
+            <button class="book-dialog__form-send-button" type="submit" >Отправить</button>
+        </form>
+    </dialog>
+    <script src="scripts.js" defer></script>
+</body>
+</html>
