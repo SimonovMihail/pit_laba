@@ -3,7 +3,6 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# 1. Добавь приложение в список
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -13,13 +12,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'workshop',
+    'corsheaders',
 ]
 
-# 2. Укажи путь к HTML (папка front/templates)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR.parent, 'front', 'templates')], # ВАЖНО
+        'DIRS': [os.path.join(BASE_DIR.parent, 'frontend')], # ВАЖНО
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -33,8 +32,9 @@ TEMPLATES = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',  # Должно быть выше AuthenticationMiddleware
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -42,10 +42,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# 3. Укажи путь к статике (CSS/JS)
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR.parent, 'front', 'static'), # ВАЖНО
+    os.path.join(BASE_DIR.parent, 'frontend'), # ВАЖНО
 ]
 
 # Включаем режим отладки для разработки
@@ -74,3 +73,5 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
